@@ -7,17 +7,17 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $email = $_POST["email"];
     $message = $_POST["message"];
 
-    // Validate form data (you can add more validation logic here)
+    // Validate form data
     if (empty($name) || empty($email) || empty($message)) {
-        echo "Please fill in all required fields.";
-        exit;
+        // Handle error here
+        exit('Please fill in all required fields.');
     }
 
-    // Process the form data (e.g., send an email, save to a database, etc.)
-    // Replace the following lines with your actual processing logic
-    // For demonstration purposes, we'll just print the data
-    echo "Name: " . $name . "<br>";
-    echo "Email: " . $email . "<br>";
-    echo "Message: " . $message;
+    // Process the form data
+    // ... (Your processing logic here)
+
+    // Redirect to the thank you page
+    header('Location: thankyou.html');
+    exit;
 }
 ?>
