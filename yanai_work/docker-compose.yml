@@ -27,9 +27,20 @@ services:
       context: ./docker/php
       # Dockerfileのファイル名
       dockerfile: Dockerfile
+
+    # コンテナ内で使用する環境変数を定義
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+
     volumes:
       # ./srcフォルダをコンテナ内の/var/wwwにマウント
-     - ./src:/var/www
+      - ./src:/var/www
+    # 依存関係を設定
+    depends_on:
+      - mysql
 
   # MySQLの定義
   mysql:
@@ -45,7 +56,7 @@ services:
       # 名前付きボリュームをMySQL コンテナに紐づける
       - mysqldata:/var/lib/mysql
       - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
-      # - ./docker/mysql/sql:/docker-entrypoint-initdb.d
+      - ./docker/mysql/sql:/docker-entrypoint-initdb.d
     ports:
       - 3306:3306
 
