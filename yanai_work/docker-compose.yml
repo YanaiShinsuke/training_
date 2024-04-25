@@ -1,0 +1,55 @@
+# 特定のバージョンを指定し、このファイル内で使用できる文法が固定
+version: '3'
+
+# 起動したいコンテナを定義。
+services:
+  # Nginxの定義
+  nginx:
+    # Nginxコンテナに使用するイメージを指定
+    image: nginx
+    # ホストマシンのポートをコンテナのポートにマッピング
+    ports:
+      - 20088:80
+    # マウントの設定
+    volumes:
+      # ./srcフォルダをコンテナ内の/var/wwwにマウント
+      - ./src:/var/www
+      # ./docker/nginxフォルダをコンテナ内の/etc/nginx/conf.dにマウント
+      - ./docker/nginx:/etc/nginx/conf.d
+    # 依存関係を設定
+    depends_on:
+      - app
+ 
+  # PHP-FPMの定義
+  app:
+    build:
+      # Dockerfileを格納するフォルダのパス
+      context: ./docker/php
+      # Dockerfileのファイル名
+      dockerfile: Dockerfile
+    volumes:
+      # ./srcフォルダをコンテナ内の/var/wwwにマウント
+     - ./src:/var/www
+
+  # MySQLの定義
+  mysql:
+    # MySQL コンテナに使用するイメージを指定
+    image: mysql
+    # コンテナ内で使用される環境変数を定義
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD}
+      MYSQL_DATABASE: ${MYSQL_DATABASE}
+      MYSQL_USER: ${MYSQL_USER}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD}
+    volumes:
+      # 名前付きボリュームをMySQL コンテナに紐づける
+      - mysqldata:/var/lib/mysql
+      - ./docker/mysql/my.cnf:/etc/mysql/conf.d/my.cnf
+      # - ./docker/mysql/sql:/docker-entrypoint-initdb.d
+    ports:
+      - 3306:3306
+
+volumes:
+  # 名前付きボリュームの作成
+  mysqldata:
+
