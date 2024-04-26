@@ -3,4 +3,4 @@
 #sleep 90s
 
 #run the setup script to create the DB and the schema in the DB
-mysql -u root -pbrainsadmin2008 php-docker-db < "/docker-entrypoint-initdb.d/create-tables.sql"
+mysql -u root -ppassword php-docker-db < "/docker-entrypoint-initdb.d/create-tables.sql"

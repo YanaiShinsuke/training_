@@ -8,9 +8,9 @@ git clone https://github.com/YanaiShinsuke/training_.git
 ```SSH
 git@github.com:YanaiShinsuke/training_.git
 ```
-容量が重ければ、webファイルのみダウンロードしても良い
+容量が重ければ、Yanai_workフォルダのみダウンロードする。
 
-## 2. インスタンスのユーザ配下にファイルを転送する
+## 2. インスタンスのユーザ配下にファイルを転送する（必要な人のみ）
 
 ```Mac上
 # cloneしたフォルダに移動
@@ -28,15 +28,16 @@ scp -r web training:/home/yanai/
 ssh training
 ```
 
-## 4. Dockerを使用して、nginxを起動する
+## 4. Docker-composeコマンドとシェルスクリプトを使用して、コンテナを作成する。
 ```インスタンス上
-# /home/yanai/のyanaiは各々のユーザ名
-docker run -dit --name yanai_webserver -p 20088:80 -v /home/yanai/web:/usr/share/nginx/html nginx
+docker-compose up -d --build
+
+./init-mysql.sh
 ```
 
 ## 5. ローカルにあるMacのwebブラウザから、先ほど作成したウェブサーバに接続
 URL入力欄に、下記を入力
-```Mac上
+```webブラウザ
 ipアドレス:20088
 ```
 
