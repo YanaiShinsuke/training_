@@ -28,10 +28,13 @@ scp -r web training:/home/yanai/
 ssh training
 ```
 
-## 4. Docker-composeコマンドとシェルスクリプトを使用して、コンテナを作成する。
+## 4. Docker-composeコマンドを使用して、コンテナを作成する。
 ```インスタンス上
 docker-compose up -d --build
+```
 
+初めて実行する場合は下記コマンドを実行
+```
 ./init-mysql.sh
 ```
 
