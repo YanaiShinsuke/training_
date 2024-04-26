@@ -18,7 +18,7 @@ cd $ダウンロードした場所/training_
 
 # インスタンスのユーザ配下にwebデータを送る
 # /home/yanai/のyanaiは各々のユーザ名
-scp -r web training:/home/yanai/
+scp -r yanai_work training:/home/yanai/
 ```
 
 ※ 本来はインスタンス先のユーザを`ユーザ名@ipアドレス:/~`で指定するが、セキュリティの関係上このように記述している。この部分は各自変更してほしい。
@@ -30,6 +30,8 @@ ssh training
 
 ## 4. Docker-composeコマンドを使用して、コンテナを作成する。
 ```インスタンス上
+# yanaiの部分は各々のユーザ名
+cd /home/yanai/training_/yanai_work
 docker-compose up -d --build
 ```
 
