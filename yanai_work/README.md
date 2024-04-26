@@ -51,4 +51,31 @@ ipアドレスにはインスタンスのグローバルIPアドレスが必要�
 curl inet-ip.info
 ```
 
+# フォルダ構成
+```
+.
+├── README.md
+├── docker
+│   ├── mysql
+│   │   ├── my.cnf
+│   │   └── sql
+│   │       ├── create-tables.sql
+│   │       └── init-database.sh
+│   ├── nginx
+│   │   └── default.conf
+│   └── php
+│       ├── Dockerfile
+│       └── php.ini
+├── docker-compose.yml
+├── init-mysql.sh
+└── src
+    ├── company_infomation.php
+    ├── db.php
+    ├── index.php
+    ├── service.php
+    ├── service_styles.css
+    ├── styles.css
+    ├── submit_form.php
+    └── thankyou.php
+```
 	
