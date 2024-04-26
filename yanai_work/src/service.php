@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>フラットテクノロジー - サービス内容</title>
+    <link rel="stylesheet" href="service_styles.css">
 </head>
 <body>
     <h1>フラットテクノロジーのサービス</h1>
